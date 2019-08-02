@@ -1,0 +1,6 @@
+<form method="POST" action="<%= entry && entry.id ? `/entry/${entry.id}/update` : '/entry/create' %>">
+    <input type="text" name="title" placeholder="Enter the title" value="<%= entry ? entry.title : '' %>" required><br>
+    <textarea class="editor" name="content" rows="20" cols="40" placeholder="Enter the content" required><%= entry ? entry.content : '' %></textarea><br>
+    <input type="submit" value="<%= entry ? 'Update the Entry' : 'Create the Entry' %>">
+</form>
+

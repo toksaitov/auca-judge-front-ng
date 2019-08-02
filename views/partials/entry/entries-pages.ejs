@@ -1,0 +1,22 @@
+<% if (totalEntries > entriesPerPage) { %>
+    <% if (page > 2) { %>
+        <a href="/entries/page/0" title="Go to the first page.">&lt;&lt;</a>
+    <% } %>
+    <% if (page > 1) { %>
+        <a href="/entries/page/<%= page - 1 %>" title="Go to the previous page.">&lt;</a>
+    <% } %>
+    <% for (let i = 1; i <= lastPage; ++i) { %>
+        <% if (page != i) { %>
+            <a href="/entries/page/<%= i %>" title="Go to page <%= i %>."><%= i %></a>
+        <% } else { %>
+            <span><%= i %></span>
+        <% } %>
+    <% } %>
+    <% if (page != lastPage) { %>
+        <a href="/entries/page/<%= page + 1 %>" title="Go to the next page.">&gt;</a>
+    <% } %>
+    <% if (page < lastPage - 1) { %>
+        <a href="/entries/page/<%= lastPage %>" title="Go to the last page.">&gt;&gt;</a>
+    <% } %>
+<% } %>
+

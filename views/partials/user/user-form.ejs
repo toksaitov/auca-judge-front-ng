@@ -1,0 +1,9 @@
+<form class="user-form" method="POST" action="<%= user && user.id ? `/user/${user.id}/update` : '/user/create' %>">
+    <input type="text" name="login" placeholder="Login Name" value="<%= user ? user.login : '' %>" required><br>
+    <input type="password" name="password" placeholder="Password" value="<%= user ? user.password : '' %>" required><br>
+    <% if (session.authorized) { %>
+        <input type="checkbox" name="administrator" <%= user && user.administrator ? 'checked' : '' %>><br>
+    <% } %>
+    <input type="submit" value="<%= user ? 'Update Details' : 'Register' %>">
+</form>
+
