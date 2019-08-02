@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head %>
+    <body>
+        <% include ../partials/header %>
+        <main class="page-content">
+            <section class="content">
+                <section class="description">
+                    <% include ../partials/user/user-global-toolbar %>
+                    <% include ../partials/error-box %>
+                    <% include ../partials/user/user-toolbar %>
+                    <article>
+                        <h1><%= user.login %></h1>
+                        <dl>
+                            <% if (user.administrator) { %>
+                                <dt>Type</dt>
+                                    <dd>Privileged</dd>
+                            <% } %>
+                            <dt>Registered</dt>
+                                <dd><%= user.createdAt %></dd>
+                        </dl>
+                    </article>
+                </section>
+            </section>
+        </main>
+        <% include ../partials/footer %>
+    </body>
+</html>
+

@@ -1,0 +1,7 @@
+<% if (session.authorized) { %>
+    <form class="comment-form" method="POST" action="<%= comment && comment.id ? `/entry/${entry.id}/comment/${comment.id}/update` : `/entry/${entry.id}/comment/create` %>">
+        <textarea class="editor" name="content" rows="20" cols="40" placeholder="Enter the comment" required><%= comment ? comment.content : '' %></textarea><br>
+        <input type="submit" value="<%= comment ? 'Update the Comment' : 'Create a Comment' %>">
+    </form>
+<% } %>
+

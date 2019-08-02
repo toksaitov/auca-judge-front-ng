@@ -1,0 +1,346 @@
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, a, label {
+  color: rgb(200, 0, 0);
+}
+h2, h3, h4, h5, h6 {
+  font-size: 1.2em;
+}
+h1 {
+  font-size: 1.4em;
+}
+h1, h2, h3, h4, h5, h6, p, table {
+  margin: 0.5em 0;
+}
+
+hr {
+  border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(195, 195, 195, 0.75), rgba(0, 0, 0, 0));
+}
+
+a:hover { 
+  color: rgb(255, 0, 0);
+}
+a:active {
+  color: rgb(222, 0, 0);
+}
+
+table {
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+}
+th, td {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-collapse: collapse;
+  border: 1px solid rgb(200, 0, 0);
+  overflow: auto;
+  padding: 0.3em;
+}
+
+dt {
+  color: rgb(200, 0, 0);
+  font-weight: bolder;
+}
+dd {
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: rgb(222, 0, 0);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 35px,
+    rgba(255, 255, 255, 0.1) 35px,
+    rgba(255, 255, 255, 0.1) 70px
+  );
+  min-height: 4em;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-shadow: -1px 3px 3px rgba(0, 0, 0, 0.2);
+}
+.page-header .logotype {
+  position: relative;
+  width: 190px;
+  top: 23px;
+}
+.page-header .title {
+  color: white;
+  margin-top: 1.2em;
+}
+.page-header a {
+  color: white;
+  text-decoration: none;
+}
+
+.page-content {
+  font-size: 1.1em;
+  margin: 2em 8%;
+  box-shadow: 0 0 100px -40px rgba(0, 0, 0, 0.3);
+}
+.page-content table {
+  min-width: 25em; 
+}
+
+.content {
+  background-color: rgb(250, 250, 245);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 35px,
+    rgba(255, 255, 255, 0.1) 35px,
+    rgba(255, 255, 255, 0.1) 70px
+  );
+  border: 0.2em dashed rgb(230, 230, 230);
+  padding: 1.3em;
+  overflow: hidden;
+}
+
+.description h1 {
+  text-decoration: underline;
+}
+.description p {
+  margin-bottom: 1em;
+}
+.description img {
+  width: 100%;
+}
+.description code {
+  display: block;
+  background-color: white;
+  padding: 0.5em;
+  border: 0.15em dashed #e6e6e6;
+  border-radius: 0.5em;
+}
+
+.solution {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(250, 245, 245);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 35px,
+    rgba(255, 255, 255, 0.1) 35px,
+    rgba(255, 255, 255, 0.1) 70px
+  );
+  border: 0.2em dashed rgb(255, 230, 230);
+  border-top: 0;
+  padding: 1.3em;
+}
+
+.submission {
+  padding-right: 1.3em;
+  width: 80%;
+}
+.submission form {
+  display: flex;
+  flex-direction: column;
+}
+.submission input[type="text"], .submission input[type="password"] {
+  font-size: 0.9em;
+  border: 1px solid rgb(200, 0, 0);
+  resize: vertical;
+  overflow: auto;
+  margin: 0;
+}
+.submission input[name="login"], .submission input[name="password"] {
+  width: em;
+}
+.submission textarea {
+  font-size: 0.9em;
+  border: 1px solid rgb(200, 0, 0);
+  height: 45em;
+  resize: vertical;
+  overflow: auto;
+  margin: 0;
+}
+.submission input[type="submit"] {
+  align-self: flex-start;
+  color: white;
+  background-color: rgb(222, 0, 0);
+  border: 1px solid rgb(200, 0, 0);
+  font-size: 1em;
+  width: 12em;
+  height: 1.8em;
+  transition: all 0.2s;
+}
+.submission input[type="submit"]:hover {
+  background-color: rgb(200, 0, 0);
+}
+.submission input[type="submit"]:active {
+  background-color: rgb(100, 0, 0);
+}
+.editor {
+  font-size: 1.025em;
+  border: 1px solid rgb(200, 0, 0);
+  height: 30em;
+  overflow: auto;
+  margin: 0;
+}
+
+.comment-form textarea {
+  height: 14em;
+}
+
+.user-global-toolbar {
+  color: rgb(177, 177, 177);
+  text-align: right;
+  border: 0.1em dashed rgb(232, 232, 221);
+  background-color: #fffffe;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+  font-size: 1.1em;
+}
+.entry-toolbar {
+  color: rgb(210, 210, 210);
+}
+.user-global-toolbar input[type="submit"],
+.user-global-toolbar a,
+.entry-toolbar input[type="submit"],
+.entry-toolbar a {
+  background: none!important;
+  color: rgb(177, 177, 177);
+  border: none;
+  padding: 0!important;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.user-global-toolbar input[type="submit"]:hover,
+.user-global-toolbar a:hover,
+.entry-toolbar input[type="submit"]:hover,
+.entry-toolbar a:hover {
+  color: rgb(200, 200, 200);
+}
+.user-global-toolbar input[type="submit"]:active,
+.user-global-toolbar a:active,
+.entry-toolbar input[type="submit"]:active,
+.entry-toolbar a:active {
+  color: rgb(150, 150, 150);
+}
+
+.results {
+  background-color: rgb(250, 250, 245);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 35px,
+    rgba(255, 255, 255, 0.1) 35px,
+    rgba(255, 255, 255, 0.1) 70px
+  );
+  border: 0.2em dotted rgb(230, 230, 230);
+  padding: 1.3em;
+  width: 20%;
+  max-height: 36.45em;
+  overflow: auto;
+  overflow-y: scroll;
+}
+.results .error {
+  color: rgb(200, 0, 0);
+}
+.results table {
+  width: 100%;
+  transition: all 0.5s;
+}
+.results table .passed {
+  color: rgb(10, 168, 1);
+  background-color: rgb(239, 255, 228);
+}
+.results table .passed td {
+  border-color: rgb(1, 168, 46);;
+}
+.results table .failed {
+  color: rgb(200, 0, 0);
+  background-color: rgb(255, 216, 216);
+}
+.results table .failed td {
+  border-color: rgb(200, 0, 0);
+}
+
+.entries-toolbar a {
+  align-self: flex-start;
+  color: #b1b1b1;
+  background-color: rgb(255, 255, 255);
+  border: 0.1em dashed rgb(230, 230, 230);
+  border-radius: 0.5em;
+  font-size: 1em;
+  width: 12em;
+  height: 1.8em;
+  transition: all 0.2s;
+  padding: 0.3em;
+}
+.entries-toolbar a:hover {
+  background-color: rgb(250, 250, 250);
+}
+.entries-toolbar a:active {
+  color: white;
+  background-color: rgb(142, 142, 142);
+}
+
+.page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 35px,
+    rgba(255, 255, 255, 0.1) 35px,
+    rgba(255, 255, 255, 0.1) 70px
+  );
+  min-height: 5em;
+}
+
+.error-box {
+  color: rgb(200, 0, 0);
+  border: 0.2em dashed rgb(255, 202, 202);
+  background-color: white;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+}
+
+.error-box p {
+  margin: 0.2em;
+}
+
+.user-form input[type="text"], .user-form input[type="password"],
+.login-form input[type="text"], .login-form input[type="password"] {
+  color: rgb(200, 0, 0);
+  width: 15em;
+}
+.user-form input[type="submit"],
+.login-form input[type="submit"] {
+  width: 15.15em;
+}
+
+@media (max-width: 780px) {
+  .solution {
+    flex-direction: column;
+  }
+
+  .submission {
+    width: 100%;
+    margin-bottom: 1.4em;
+  }
+
+  .results {
+    width: initial;
+  }
+}
+

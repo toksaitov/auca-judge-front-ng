@@ -1,0 +1,37 @@
+{
+  "name": "auca-judge-front",
+  "version": "1.0.0",
+  "description": "auca-judge-front is a web front end for the auca-judge system.",
+  "main": "auca-judge-front.js",
+  "scripts": {
+    "start": "node auca-judge-front.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toksaitov/auca-judge-front-next.git"
+  },
+  "keywords": [
+    "auca-judge",
+    "auca-judge-front"
+  ],
+  "author": "Toksaitov Dmitrii Alexandrovich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toksaitov/auca-judge-front-next/issues"
+  },
+  "homepage": "https://github.com/toksaitov/auca-judge-front-next#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^5.0.1",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "marked": "^0.7.0",
+    "mysql2": "^1.6.5",
+    "npm": "^6.10.2",
+    "sequelize": "^4.44.0",
+    "short-uuid": "^3.1.1"
+  }
+}

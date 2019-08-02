@@ -1,0 +1,12 @@
+<section class="toolbar">
+    <a href="/users">&lt;</a>
+    <% if (session.administrator) { %>
+        |
+        <a href="/user/<%= user.id %>/update">edit</a>
+        |
+        <form method="POST" action="/user/<%= user.id %>/delete" style="display:inline">
+            <input type="submit" value="x">
+        </form>
+    <% } %>
+</section>
+

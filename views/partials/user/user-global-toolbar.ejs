@@ -1,0 +1,14 @@
+<section class="user-global-toolbar">
+    <% if (session.authorized) { %>
+        <form method="POST" action="/logout" style="display:inline">
+            <input type="submit" value="logout">
+        </form>
+        <% if (session.administrator) { %>
+            <a href="/users">users</a>
+        <% } %>
+    <% } else { %>
+        <a href="/login">login</a>
+        <a href="/register">register</a>
+    <% } %>
+</section>
+
