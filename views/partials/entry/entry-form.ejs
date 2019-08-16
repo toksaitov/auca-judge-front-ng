@@ -1,6 +1,11 @@
 <form method="POST" action="<%= entry && entry.id ? `/entry/${entry.id}/update` : '/entry/create' %>">
     <input type="text" name="title" placeholder="Enter the title" value="<%= entry ? entry.title : '' %>" required><br>
-    <textarea class="editor" name="content" rows="20" cols="40" placeholder="Enter the content" required><%= entry ? entry.content : '' %></textarea><br>
+    <textarea class="editor" name="content" rows="10" cols="40" placeholder="Enter the content" required><%= entry ? entry.content : '' %></textarea><br>
+    <select name="language">
+        <option value="C">C</option>
+        <option value="Swift">Swift</option>
+    </select>
+    <textarea class="editor" name="tests" rows="10" cols="40" placeholder="Enter the tests in JSON format" required><%= entry ? entry.tests : '' %></textarea><br>
     <input type="submit" value="<%= entry ? 'Update the Entry' : 'Create the Entry' %>">
 </form>
 
