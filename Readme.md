@@ -26,6 +26,7 @@ AUCA_JUDGE_FRONT_SERVER_PORT=the port to use by the server (8080 by default)
 
 # Session
 AUCA_JUDGE_FRONT_SESSION_SECRET=session secret to use with cookies
+AUCA_JUDGE_FRONT_JWT_SECRET=JWT secret
 
 # bcrypt
 AUCA_JUDGE_FRONT_BCRYPT_SALT_LENGTH=length of the random salt (8 by default)
