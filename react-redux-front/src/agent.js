@@ -40,7 +40,7 @@ const requests2 = {
 
 const Auth = {
   current: () =>
-    requests2.get('/currentUser'),
+    requests2.get('/user'),
   login: (login, password) =>
     requests2.post('/login', { login, password }),
   register: (username, email, password) =>
@@ -63,9 +63,9 @@ const Articles = {
   favoritedBy: (author, page) =>
     requests.get(`/articles?favorited=${encode(author)}&${limit(5, page)}`),
   feed: () =>
-    requests2.get('/feed?limit=10&offset=0'),
-  get: slug =>
-    requests.get(`/articles/${slug}`),
+    requests2.get('/entries'),
+  get: id =>
+    requests2.get(`/entry/${id}`),
   unfavorite: slug =>
     requests.del(`/articles/${slug}/favorite`),
   update: article =>
@@ -79,8 +79,8 @@ const Comments = {
     requests.post(`/articles/${slug}/comments`, { comment }),
   delete: (slug, commentId) =>
     requests.del(`/articles/${slug}/comments/${commentId}`),
-  forArticle: slug =>
-    requests.get(`/articles/${slug}/comments`)
+  forArticle: id =>
+    requests2.get(`/entry/${id}/comments`)
 };
 
 const Profile = {

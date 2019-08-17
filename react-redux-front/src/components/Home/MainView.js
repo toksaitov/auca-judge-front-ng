@@ -16,7 +16,7 @@ const YourFeedTab = props => {
         <a  href=""
             className={ props.tab === 'feed' ? 'nav-link active' : 'nav-link' }
             onClick={clickHandler}>
-          Your Feed
+          Problems
         </a>
       </li>
     );
@@ -56,13 +56,10 @@ const MainView = props => {
     <div className="col-md-9">
       <div className="feed-toggle">
         <ul className="nav nav-pills outline-active">
-
           <YourFeedTab
             token={props.token}
             tab={props.tab}
             onTabClick={props.onTabClick} />
-
-          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
         </ul>
       </div>
 
