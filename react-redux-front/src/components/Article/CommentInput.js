@@ -40,10 +40,6 @@ class CommentInput extends React.Component {
           </textarea>
         </div>
         <div className="card-footer">
-          <img
-            src={this.props.currentUser.image}
-            className="comment-author-img"
-            alt={this.props.currentUser.username} />
           <button
             className="btn btn-sm btn-primary"
             type="submit">

@@ -37,14 +37,16 @@ class Editor extends React.Component {
     this.submitForm = ev => {
       ev.preventDefault();
       const article = {
-        title: this.props.title,
-        description: this.props.description,
-        body: this.props.body
+        'title': this.props.title,
+        'content': this.props.body,
+        'language': 'C',
+        'tests': this.props.description,
+        'published': true
       };
 
-      const slug = { slug: this.props.articleSlug };
-      const promise = this.props.articleSlug ?
-        agent.Articles.update(Object.assign(article, slug)) :
+      const id = { id: this.props.articleID };
+      const promise = this.props.articleID ?
+        agent.Articles.update(Object.assign(article, id)) :
         agent.Articles.create(article);
 
       this.props.onSubmit(promise);
@@ -52,18 +54,18 @@ class Editor extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.match.params.slug !== nextProps.match.params.slug) {
-      if (nextProps.match.params.slug) {
+    if (this.props.match.params.id !== nextProps.match.params.id) {
+      if (nextProps.match.params.id) {
         this.props.onUnload();
-        return this.props.onLoad(agent.Articles.get(this.props.match.params.slug));
+        return this.props.onLoad(agent.Articles.get(this.props.match.params.id));
       }
       this.props.onLoad(null);
     }
   }
 
   componentWillMount() {
-    if (this.props.match.params.slug) {
-      return this.props.onLoad(agent.Articles.get(this.props.match.params.slug));
+    if (this.props.match.params.id) {
+      return this.props.onLoad(agent.Articles.get(this.props.match.params.id));
     }
     this.props.onLoad(null);
   }
