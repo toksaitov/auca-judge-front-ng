@@ -4,7 +4,7 @@ import _superagent from 'superagent';
 const superagent = superagentPromise(_superagent, global.Promise);
 
 const API_ROOT = 'https://conduit.productionready.io/api';
-const API_ROOT2 = 'http://auca.space:8081';
+const API_ROOT2 = `http://auca.space:8085`;
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -29,7 +29,7 @@ const requests = {
 
 const requests2 = {
   del: url =>
-    superagent.del(`${API_ROOT2}${url}`).use(tokenPlugin).then(responseBody),
+    superagent.del(`${API_ROOT2}${url}`).use(tokenPlugin).set('Accept', 'application/json').then(responseBody),
   get: url =>
     superagent.get(`${API_ROOT2}${url}`).use(tokenPlugin).set('Accept', 'application/json').then(responseBody),
   put: (url, body) =>
@@ -56,8 +56,8 @@ const Articles = {
     requests.get(`/articles?${limit(10, page)}`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
-  del: slug =>
-    requests.del(`/articles/${slug}`),
+  del: id =>
+    requests2.del(`/entry/${id}/delete`),
   favorite: slug =>
     requests.post(`/articles/${slug}/favorite`),
   favoritedBy: (author, page) =>
@@ -75,8 +75,8 @@ const Articles = {
 };
 
 const Comments = {
-  create: (slug, comment) =>
-    requests.post(`/articles/${slug}/comments`, { comment }),
+  create: (id, submission) =>
+    requests2.post(`/entry/${id}/submit`, { submission }),
   delete: (slug, commentId) =>
     requests.del(`/articles/${slug}/comments/${commentId}`),
   forArticle: id =>

@@ -30,16 +30,18 @@ class Editor extends React.Component {
 
     const updateFieldEvent =
       key => ev => this.props.onUpdateField(key, ev.target.value);
+
     this.changeTitle = updateFieldEvent('title');
     this.changeDescription = updateFieldEvent('description');
     this.changeBody = updateFieldEvent('body');
+    this.changeLanguage = updateFieldEvent('language');
 
     this.submitForm = ev => {
       ev.preventDefault();
       const article = {
         'title': this.props.title,
         'content': this.props.body,
-        'language': 'C',
+        'language': this.props.language || 'C',
         'tests': this.props.description,
         'published': true
       };
@@ -105,10 +107,19 @@ class Editor extends React.Component {
                   </fieldset>
 
                   <fieldset className="form-group">
+                    <select 
+                      className="form-control languageInput"
+                      onClick={this.changeLanguage} required>
+                        <option>C</option>
+                        <option>Swift</option>
+                    </select>
+                  </fieldset>
+
+                  <fieldset className="form-group">
                     <textarea
                       className="form-control"
                       rows="8"
-                      placeholder="Write your article (in markdown)"
+                      placeholder="Write your tests (in markdown)"
                       value={this.props.body}
                       onChange={this.changeBody}>
                     </textarea>

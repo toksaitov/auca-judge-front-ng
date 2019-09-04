@@ -3,7 +3,7 @@ import {
   EDITOR_PAGE_UNLOADED,
   ARTICLE_SUBMITTED,
   ASYNC_START,
-  UPDATE_FIELD_EDITOR
+  UPDATE_FIELD_EDITOR,
 } from '../constants/actionTypes';
 
 export default (state = {}, action) => {
@@ -14,7 +14,8 @@ export default (state = {}, action) => {
         articleID: action.payload ? action.payload.article.id : '',
         title: action.payload ? action.payload.article.title : '',
         description: action.payload ? action.payload.article.description : '',
-        body: action.payload ? action.payload.article.body : ''
+        body: action.payload ? action.payload.article.body : '',
+        language: action.payload ? action.payload.article.language : ''
       };
     case EDITOR_PAGE_UNLOADED:
       return {};

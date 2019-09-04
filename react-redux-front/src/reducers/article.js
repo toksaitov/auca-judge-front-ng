@@ -18,6 +18,8 @@ export default (state = {}, action) => {
     case ADD_COMMENT:
       return {
         ...state,
+        article: action.payload[0].article,
+        //articleID: action.payload ? action.payload.article.id : '',
         commentErrors: action.error ? action.payload.errors : null,
         comments: action.error ?
           null :
@@ -29,6 +31,11 @@ export default (state = {}, action) => {
         ...state,
         comments: state.comments.filter(comment => comment.id !== commentId)
       };
+      case 'CHANGE_COMMENT':
+        return {
+          ...state,
+          commentBody: action.payload,
+        };  
     default:
       return state;
   }

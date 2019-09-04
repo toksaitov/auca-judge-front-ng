@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
 const ArticleActions = props => {
   const article = props.article;
   const del = () => {
-    props.onClickDelete(agent.Articles.del(article.id))
+    props.onClickDelete(agent.Articles.del(article.slug))
   };
   if (props.canModify) {
     return (

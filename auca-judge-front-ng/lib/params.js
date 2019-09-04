@@ -5,6 +5,8 @@ const dotenv =
 
 let databaseHost =
     process.env['AUCA_JUDGE_FRONT_DATABASE_HOST'];
+let problemDatabaseURL =
+    process.env['AUCA_JUDGE_FRONT_PROBLEM_DATABASE_URL'];
 let databasePort =
     process.env['AUCA_JUDGE_FRONT_DATABASE_PORT'];
 let databaseDialect =
@@ -22,6 +24,15 @@ if (databaseHost == null) {
     console.warn(
         'The database host "AUCA_JUDGE_FRONT_DATABASE_HOST" is not set in the ' +
         `".env" file. Assuming the database host is "${databaseHost}".`
+    );
+}
+
+if (problemDatabaseURL == null) {
+    problemDatabaseURL = 'mongodb://localhost:27017/auca-judge';
+
+    console.warn(
+        'The database URL "AUCA_JUDGE_FRONT_PROBLEM_DATABASE_URL" is not set in the ' +
+        `".env" file. Assuming the database URL is "${problemDatabaseURL}".`
     );
 }
 
@@ -119,6 +130,8 @@ if (!userPassword) {
 const params = {
     'databaseHost':
         databaseHost,
+    'problemDatabaseURL':
+        problemDatabaseURL,
     'databasePort':
         databasePort,
     'databaseDialect':

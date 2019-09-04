@@ -7,9 +7,9 @@ const ArticleMeta = props => {
   return (
     <div className="article-meta">
       <div className="info">
-        <Link to={`/@${article.author.username}`} className="author">
+        <p className="author">
           {article.author.username}
-        </Link>
+        </p>
         <span className="date">
           {new Date(article.createdAt).toDateString()}
         </span>

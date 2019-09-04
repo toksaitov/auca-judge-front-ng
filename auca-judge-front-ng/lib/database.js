@@ -1,5 +1,7 @@
 const Sequelize =
     require('sequelize');
+const mongoose =
+    require("mongoose");
 
 module.exports = function(params) {
 
@@ -75,9 +77,20 @@ module.exports = function(params) {
     Comment.belongsTo(User);
     Comment.belongsTo(Entry);
 
+    const problemDatabase =
+        mongoose.connect(
+            params.problemDatabaseURL, { }
+        );
+    mongoose.model(
+        "Problem", require("./models/problem.js")
+    );
+    const Problem = mongoose.model("Problem");
+
     const db = {
         'connection':
             database,
+        'problemConnection':
+            problemDatabase,
 
         'user':
             User,
@@ -85,6 +98,8 @@ module.exports = function(params) {
             Entry,
         'comment':
             Comment,
+        'problem':
+            Problem,
 
         'start': function() {
 
@@ -113,6 +128,7 @@ module.exports = function(params) {
                     'administrator': false
                 });
             });
+
         }
     };
 

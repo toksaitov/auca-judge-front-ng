@@ -40,23 +40,20 @@ class Article extends React.Component {
       this.props.currentUser.username === this.props.article.author.username;
     return (
       <div className="article-page">
-
         <div className="banner">
           <div className="container">
-
             <h1>{this.props.article.title}</h1>
+            <h2 style={{fontColor: 'white'}}>Язык: {this.props.article['language']}</h2>
             <ArticleMeta
               article={this.props.article}
               canModify={canModify} />
-
           </div>
         </div>
-
+        
         <div className="container page">
 
           <div className="row article-content">
             <div className="col-xs-12">
-
               <div dangerouslySetInnerHTML={markup}></div>
             </div>
           </div>
@@ -65,7 +62,7 @@ class Article extends React.Component {
 
           <div className="article-actions">
           </div>
-
+          
           <div className="row">
             <CommentContainer
               comments={this.props.comments || []}

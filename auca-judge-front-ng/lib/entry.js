@@ -8,8 +8,29 @@ const short =
     require('short-uuid');
 const translator =
     short();
+const mongoose =
+    require("mongoose");
 
 module.exports = function(params, server, database) {
+    
+    function saveProblem(tests, onFinishCallback) {
+        let problemData = JSON.parse(tests);
+
+        problemData["_id"] = new mongoose.Types.ObjectId(problemData["_id"]["$oid"]);
+        let Problem = database.Problem;
+        let problem = new Problem(problemData);
+        problem.save(error => {
+            if (error) {
+                console.error(error);
+                throw error;
+            }
+
+            // Temp
+            console.log('A new problem was saved.');
+
+            onFinishCallback();
+        });
+    }
 
     server.get(['/', '/entries', '/entries/page/:number'], (request, response) => {
         const entriesPerPage =
@@ -48,6 +69,7 @@ module.exports = function(params, server, database) {
                                 'description': entry.content,
                                 'favorited': false,
                                 'favoritesCount': 1,
+                                'language': entry.language,
                                 'createdAt': entry.createdAt,
                                 'updatedAt': entry.updatedAt,
                                 'slug': null,
@@ -196,7 +218,9 @@ module.exports = function(params, server, database) {
                     'id': id
                 }
             }).then(result => {
-                response.redirect(`/entry/${id}`);
+                saveProblem(tests, () => {
+                    response.redirect(`/entry/${id}`);
+                });
             }).catch(error => {
                 console.error(error);
 
@@ -212,31 +236,34 @@ module.exports = function(params, server, database) {
                 'published': published,
                 'userId': request.session.userID || request.payload.userID
             }).then(entry => {
-                response.format({
-                    'text/html': () => {
-                        response.redirect(`/entry/${entry.id}`);
-                    },
-                    'application/json': () => {
-                        response.json({
-                            'article': {
-                                'id': entry.id,
-                                'title': entry.title,
-                                'body': entry.content,
-                                'description': entry.content,
-                                'favorited': false,
-                                'favoritesCount': 1,
-                                'createdAt': entry.createdAt,
-                                'updatedAt': entry.updatedAt,
-                                'slug': null,
-                                'author': {
-                                    'username': 'administrator',
-                                    'bio': null,
-                                    'image': null,
-                                    'following': false
+                saveProblem(tests, () => {
+                    response.format({
+                        'text/html': () => {
+                            response.redirect(`/entry/${entry.id}`);
+                        },
+                        'application/json': () => {
+                            response.json({
+                                'article': {
+                                    'id': entry.id,
+                                    'title': entry.title,
+                                    'body': entry.content,
+                                    'description': entry.content,
+                                    'favorited': false,
+                                    'favoritesCount': 1,
+                                    'language': entry.language,
+                                    'createdAt': entry.createdAt,
+                                    'updatedAt': entry.updatedAt,
+                                    'slug': null,
+                                    'author': {
+                                        'username': 'administrator',
+                                        'bio': null,
+                                        'image': null,
+                                        'following': false
+                                    }
                                 }
-                            }
-                        });
-                    }
+                            });
+                        }
+                    });
                 });
             }).catch(error => {
                 console.error(error);
@@ -247,14 +274,16 @@ module.exports = function(params, server, database) {
         }
     });
 
-    server.post('/entry/:id/delete', (request, response) => {
-        if (!request.session.authorized) {
+    server.delete('/entry/:id/delete', server.authOptional, (request, response) => {
+        if (!(request.headers['accept'].includes('text/html') && request.session.authorized ||
+              request.headers['accept'].includes('application/json') && request.payload.authorized)) {
             response.status(401).end('Unauthorized');
 
             return;
         }
 
-        if (!request.session.administrator) {
+        if (!(request.headers['accept'].includes('text/html') && request.session.administrator ||
+              request.headers['accept'].includes('application/json') && request.payload.administrator)) {
             response.status(403).end('Forbidden');
 
             return;
@@ -274,7 +303,7 @@ module.exports = function(params, server, database) {
         const Entry = database.entry;
         Entry.destroy({
             'where': {
-                'id': id
+                'id': ''
             }
         }).then(() => {
             response.redirect('/entries');
@@ -322,6 +351,7 @@ module.exports = function(params, server, database) {
                             'title': entry.title,
                             'body': entry.content,
                             'description': entry.content,
+                            'language': entry.language,
                             'favorited': false,
                             'favoritesCount': 1,
                             'createdAt': entry.createdAt,

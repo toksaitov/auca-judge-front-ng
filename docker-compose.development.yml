@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  auca-judge-front-ng:
+    volumes:
+      - "./auca-judge-front-ng:/auca-judge-front-ng"
+
+  auca-judge-queue:
+    volumes:
+      - "./auca-judge-queue:/auca-judge-queue"
+      - "./auca-judge-back:/auca-judge-back"
+      - "/var/run/docker.sock:/var/run/docker.sock"

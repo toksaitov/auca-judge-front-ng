@@ -18,12 +18,6 @@ const LoggedOutView = props => {
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">
-            Sign up
-          </Link>
-        </li>
-
       </ul>
     );
   }
@@ -54,9 +48,7 @@ const LoggedInView = props => {
         </li>
 
         <li className="nav-item">
-          <Link
-            to={`/@${props.currentUser.username}`}
-            className="nav-link">
+          <Link to="/settings" className="nav-link">
             {props.currentUser.username}
           </Link>
         </li>

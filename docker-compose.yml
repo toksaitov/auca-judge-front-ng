@@ -1,0 +1,73 @@
+version: "2"
+
+services:
+  react-redux-front:
+    build: "./react-redux-front"
+    image: "toksaitov/react-redux-front"
+    ports:
+      - "4112:4112"
+    depends_on:
+      - "auca-judge-front-ng"
+
+  auca-judge-front-ng:
+    build: "./auca-judge-front-ng"
+    image: "toksaitov/auca-judge-front-ng"
+    ports:
+      - "8085:8085"
+    env_file:
+      - ".env"
+    depends_on:
+      - "auca-judge-mysql-db"
+      - "auca-judge-redis-db"
+      - "auca-judge-mongo-db"
+
+  auca-judge-front:
+    build: "./auca-judge-front"
+    image: "toksaitov/auca-judge-front"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "auca-judge-redis-db"
+      - "auca-judge-mongo-db"
+
+  auca-judge-queue:
+    build: "./auca-judge-queue"
+    image: "toksaitov/auca-judge-queue"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    depends_on:
+      - "auca-judge-etcd-db"
+      - "auca-judge-redis-db"
+      - "auca-judge-mongo-db"
+
+  auca-judge-etcd-db:
+    image: "quay.io/coreos/etcd:v2.3.3"
+    networks:
+      default:
+        aliases:
+          - "auca-judge-discovery-db"
+  auca-judge-redis-db:
+    image: "redis:3.0.7"
+    networks:
+      default:
+        aliases:
+          - "auca-judge-queue-db"
+          - "auca-judge-state-db"
+  auca-judge-mongo-db:
+    image: "mongo:3.2.6"
+    networks:
+      default:
+        aliases:
+          - "auca-judge-task-db"
+          - "auca-judge-problem-db"
+  auca-judge-mysql-db:
+    image: "mysql:5.7.27"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${AUCA_JUDGE_FRONT_DATABASE_ROOT_PASSWORD}"
+      - "MYSQL_DATABASE=${AUCA_JUDGE_FRONT_DATABASE_NAME}"
+      - "MYSQL_USER=${AUCA_JUDGE_FRONT_DATABASE_USER}"
+      - "MYSQL_PASSWORD=${AUCA_JUDGE_FRONT_DATABASE_PASSWORD}"
+    networks:
+      default:
+        aliases:
+          - "auca-judge-data-db"

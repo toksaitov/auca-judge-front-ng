@@ -5,14 +5,11 @@ import { connect } from 'react-redux';
 
 const ArticlePreview = props => {
   const article = props.article;
-
   return (
     <div className="article-preview">
       <div className="article-meta">
         <div className="info">
-          <Link className="author" to={`/@${article.author.username}`}>
-            {article.author.username}
-          </Link>
+        <p>{article.author.username}</p>
           <span className="date">
             {new Date(article.createdAt).toDateString()}
           </span>
@@ -21,7 +18,7 @@ const ArticlePreview = props => {
 
       <Link to={`/article/${article.id}`} className="preview-link">
         <h1>{article.title}</h1>
-        <p>{article.description}</p>
+        <p>Язык: {article.language}</p>
         <span>Read more...</span>
       </Link>
     </div>
