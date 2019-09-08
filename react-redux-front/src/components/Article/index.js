@@ -62,7 +62,28 @@ class Article extends React.Component {
 
           <div className="article-actions">
           </div>
-          
+
+          <script src="front.js"></script>
+          <form id="problemForm" method="post" action="http://auca.space:8080/submit">
+            <input type="hidden" name="id" value="572709f8d12a816dfbde7a87"></input>
+            <textarea name="submission" value="int main() { return 1; }"></textarea>
+            <input type="submit" name="submit" value="submit"></input>
+          </form>
+          <aside class="results">
+          <h2>Results</h2>
+          <p class="error" style={{'display' : 'none'}}></p>
+          <table>
+            <thead>
+              <tr>
+                <th>Test #</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </aside>
+
           <div className="row">
             <CommentContainer
               comments={this.props.comments || []}

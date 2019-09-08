@@ -8,16 +8,15 @@ const short =
     require('short-uuid');
 const translator =
     short();
-const mongoose =
-    require("mongoose");
 
 module.exports = function(params, server, database) {
-    
+
     function saveProblem(tests, onFinishCallback) {
         let problemData = JSON.parse(tests);
 
+        const mongoose = database.problemConnection;
         problemData["_id"] = new mongoose.Types.ObjectId(problemData["_id"]["$oid"]);
-        let Problem = database.Problem;
+        const Problem = mongoose.model("Problem");
         let problem = new Problem(problemData);
         problem.save(error => {
             if (error) {

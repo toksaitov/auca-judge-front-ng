@@ -13,9 +13,9 @@ export default (state = {}, action) => {
         ...state,
         articleID: action.payload ? action.payload.article.id : '',
         title: action.payload ? action.payload.article.title : '',
-        description: action.payload ? action.payload.article.description : '',
         body: action.payload ? action.payload.article.body : '',
-        language: action.payload ? action.payload.article.language : ''
+        language: action.payload ? action.payload.article.language : '',
+        tests: action.payload ? action.payload.article.tests : ''
       };
     case EDITOR_PAGE_UNLOADED:
       return {};

@@ -4,9 +4,7 @@ services:
   auca-judge-front-ng:
     volumes:
       - "./auca-judge-front-ng:/auca-judge-front-ng"
-
-  auca-judge-queue:
+  react-redux-front:
     volumes:
-      - "./auca-judge-queue:/auca-judge-queue"
-      - "./auca-judge-back:/auca-judge-back"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./react-redux-front:/react-redux-front"
+

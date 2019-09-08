@@ -32,9 +32,9 @@ class Editor extends React.Component {
       key => ev => this.props.onUpdateField(key, ev.target.value);
 
     this.changeTitle = updateFieldEvent('title');
-    this.changeDescription = updateFieldEvent('description');
     this.changeBody = updateFieldEvent('body');
     this.changeLanguage = updateFieldEvent('language');
+    this.changeTests = updateFieldEvent('tests');
 
     this.submitForm = ev => {
       ev.preventDefault();
@@ -42,7 +42,7 @@ class Editor extends React.Component {
         'title': this.props.title,
         'content': this.props.body,
         'language': this.props.language || 'C',
-        'tests': this.props.description,
+        'tests': this.props.tests,
         'published': true
       };
 
@@ -98,16 +98,17 @@ class Editor extends React.Component {
                   </fieldset>
 
                   <fieldset className="form-group">
-                    <input
+                    <textarea
                       className="form-control"
-                      type="text"
-                      placeholder="What's this article about?"
-                      value={this.props.description}
-                      onChange={this.changeDescription} />
+                      rows="8"
+                      placeholder="Problem Description (in markdown)"
+                      value={this.props.body}
+                      onChange={this.changeBody}>
+                    </textarea>
                   </fieldset>
 
                   <fieldset className="form-group">
-                    <select 
+                    <select
                       className="form-control languageInput"
                       onClick={this.changeLanguage} required>
                         <option>C</option>
@@ -120,8 +121,8 @@ class Editor extends React.Component {
                       className="form-control"
                       rows="8"
                       placeholder="Write your tests (in markdown)"
-                      value={this.props.body}
-                      onChange={this.changeBody}>
+                      value={this.props.tests}
+                      onChange={this.changeTests}>
                     </textarea>
                   </fieldset>
 
